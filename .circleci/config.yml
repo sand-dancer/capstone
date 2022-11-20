@@ -12,7 +12,7 @@ jobs:
 
   build:
     docker:
-      - image: ubuntu-2204:2022.04.2
+      - image: docker:latest
     steps:
       - checkout
       - run:
