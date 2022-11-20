@@ -6,16 +6,16 @@ jobs:
       - image: python:3.7.3-stretch
     steps:
       - run:
-        name: Test the dockerfile
-        command: make test
+          name: Test the dockerfile
+          command: make test
 
   build:
     docker:
       - image: python:3.7.3-stretch
     steps:
       - run:
-        name: Build and push the dockerfile
-        command: make build
+          name: Build and push the dockerfile
+          command: make build
 
   create-cluster:
     docker:
@@ -33,7 +33,7 @@ jobs:
       - run:
           name: Deploy the docker file to the cluster
           command: |
-            make deply-to-cluster
+            make deploy-to-cluster
 
 workflows:
   default:
