@@ -28,6 +28,7 @@ jobs:
     docker:
       - image: weaveworks/eksctl 
     steps:
+      - checkout
       - run:
           name: Create a small 2 node cluster
           command: |
@@ -40,7 +41,7 @@ jobs:
       - run:
           name: Deploy the docker file to the cluster
           command: |
-            make deploy-to-cluster
+            kubectl create deploy rosscapstonecluster --image=jarmanr/capstone:latest
 
 workflows:
   default:
@@ -48,3 +49,5 @@ workflows:
       - test
       - build
       - create-cluster
+      - deploy-to-cluster
+          requires: [create-cluster]
