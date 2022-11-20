@@ -49,5 +49,5 @@ workflows:
       - test
       - build
       - create-cluster
-      - deploy-to-cluster
+      - deploy-to-cluster:
           requires: [create-cluster]
