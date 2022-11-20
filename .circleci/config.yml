@@ -26,7 +26,7 @@ jobs:
 
   create-cluster:
     docker:
-      - image: amazon/aws-cli
+      - image: weaveworks/eksctl 
     steps:
       - run:
           name: Create a small 2 node cluster
