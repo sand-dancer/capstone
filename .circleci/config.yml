@@ -47,3 +47,4 @@ workflows:
     jobs:
       - test
       - build
+      - create-cluster
