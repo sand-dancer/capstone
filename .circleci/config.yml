@@ -1,0 +1,42 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: python:3.7.3-stretch
+    steps:
+      - run:
+        name: Test the dockerfile
+        command: make test
+
+  build:
+    docker:
+      - image: python:3.7.3-stretch
+    steps:
+      - run:
+        name: Build and push the dockerfile
+    	command: make build
+
+  create-cluster:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - run:
+          name: Create a small 2 node cluster
+          command: |
+            make create-cluster
+
+  deploy-to-cluster@
+    docker:
+     - image: amazon/aws-cli
+    steps:
+      - run:
+          name: Deploy the docker file to the cluster
+          command: |
+            make deply-to-cluster
+
+workflows:
+  default:
+    jobs:
+      - test
+      - build
