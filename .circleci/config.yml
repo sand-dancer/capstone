@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Build and push the dockerfile
           command: | #make build-image
-            docker login -u $DOCKER_USERNAME -p $DOCKER_ACCSS_CODE
+            docker login -u $DOCKER_USERNAME -p $DOCKER_ACCESS_CODE
             docker build --tag=jarmanr/capstone .
             docker image ls
             docker push jarmanr/capstone
