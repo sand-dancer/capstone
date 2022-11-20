@@ -12,10 +12,7 @@ jobs:
 
   build:
     docker:
-      - image: cimg/base:2022.06
-        auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKERHUB_ACCESS_CODE  # context / project UI env-var reference
+      - image: ubuntu-2204:2022.04.2
     steps:
       - checkout
       - run:
