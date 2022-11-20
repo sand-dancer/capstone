@@ -15,7 +15,7 @@ jobs:
     steps:
       - run:
           name: Build and push the dockerfile
-          command: make build
+          command: make build-image
 
   create-cluster:
     docker:
