@@ -32,6 +32,7 @@ jobs:
       - run:
           name: Create a small 2 node cluster
           command: |
+            aws sts get-caller-identity
             eksctl create cluster -f cluster_config.yaml
 
   deploy-to-cluster:
