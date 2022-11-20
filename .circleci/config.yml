@@ -29,6 +29,9 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - run:
+          name: Install deps
+          command: apt-get install -y build-essential
+      - run:
           name: Create a small 2 node cluster
           command: |
             make create-cluster
