@@ -25,9 +25,9 @@ test:
 	#python -m pytest --nbval notebook.ipynb
 
 build-image:
+	docker login -u $DOCKER_USERNAME -p $DOCKER_ACCSS_CODE
 	docker build --tag=jarmanr/capstone .
 	docker image ls
-	docker login -u $DOCKER_USERNAME -p $DOCKER_ACCSS_CODE
 	docker push jarmanr/capstone
 
 check-eksctl:
