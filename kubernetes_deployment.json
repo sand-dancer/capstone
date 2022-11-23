@@ -25,7 +25,6 @@
                {
                   "name":"rolling1",
                   "image":"jarmanr/capstone:latest"
-                  ]
                }
             ]
          }
