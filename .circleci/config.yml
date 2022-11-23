@@ -42,6 +42,7 @@ jobs:
     # - image: amazon/aws-cli
     executor: aws-eks/python3
     steps:
+      - kubernetes/install
       - run:
           name: Deploy the docker file to the cluster
           command: |
