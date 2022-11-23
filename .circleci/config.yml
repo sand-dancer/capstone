@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   aws-eks: openbean/aws-eks@2.0.0
+  kubernetes: openbean/kubernetes-orb@1.0.0
 
 jobs:
   test:
