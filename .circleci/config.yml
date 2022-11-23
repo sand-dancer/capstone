@@ -33,8 +33,8 @@ jobs:
       - image: 'cimg/python:3.10'
     steps:
       - checkout
-      - aws-eks/install-aws-iam-authenticator:
-          release-tag: ''
+      #- aws-eks/install-aws-iam-authenticator:
+      #    release-tag: ''
       - aws-eks/create-cluster:
           cluster-name: rosscapstonecluster
           skip-kubectl-install: false
