@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  aws-eks: openbean/aws-eks@2.0.0
 
 jobs:
   test:
@@ -36,8 +38,9 @@ jobs:
             eksctl create cluster -f cluster_config.yaml
 
   deploy-to-cluster:
-    docker:
-     - image: amazon/aws-cli
+    #docker:
+    # - image: amazon/aws-cli
+    executor: aws-eks/python3
     steps:
       - run:
           name: Deploy the docker file to the cluster
