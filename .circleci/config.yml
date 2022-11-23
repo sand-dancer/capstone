@@ -28,26 +28,33 @@ jobs:
             docker push jarmanr/capstone
 
   create-cluster:
-    docker:
-      - image: weaveworks/eksctl 
+    executor: aws-eks/python3
     steps:
       - checkout
-      - run:
-          name: Create a small 2 node cluster
-          command: |
-            aws sts get-caller-identity
-            eksctl create cluster -f cluster_config.yaml
+      - aws-eks/install-aws-iam-authenticator:
+          release-tag: ''
+      - aws-eks/create-cluster:
+          cluster-name: rosscapstonecluster
+          skip-kubectl-install: false
+          verbose: 3
+          node-type: t2.micro
+          nodes-max: 2
+          ssh-access: false
+          ssh-public-key: ''
 
   deploy-to-cluster:
     #docker:
     # - image: amazon/aws-cli
     executor: aws-eks/python3
     steps:
-      - kubernetes/install
-      - run:
-          name: Deploy the docker file to the cluster
-          command: |
-            kubectl create deploy rosscapstonecluster --image=jarmanr/capstone:latest
+      - checkout
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: rosscapstonecluster
+          install-kubectl: true
+      - kubernetes/create-or-update-resource:
+          get-rollout-status: true
+          resource-file-path: kubernetes_deployment.json
+          resource-name: Rolling deployment
 
 
 workflows:
@@ -56,5 +63,5 @@ workflows:
       - test
       - build
       - create-cluster
-      - deploy-to-cluster
-          #requires: [create-cluster]
+      - deploy-to-cluster:
+          requires: [create-cluster]
