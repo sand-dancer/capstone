@@ -9,7 +9,7 @@ public class BusinessProcess {
     while(true){
       Socket sock = listener.accept();
       new PrintWriter(sock.getOutputStream(), true).
-                println("Hello World: " + args[0]);
+                println("Hello World green");
       sock.close();
     }
   }

@@ -6,6 +6,8 @@ WORKDIR /java
 
 EXPOSE 8080
 
-RUN javac BusinessProcess.java
+ARG SOMEVAR 
+RUN javac ${SOMEVAR}/BusinessProcess.java && cp ${SOMEVAR}/BusinessProcess.class /java
 
-CMD java BusinessProcess $buildNum
+CMD ["java", "BusinessProcess"]
+
