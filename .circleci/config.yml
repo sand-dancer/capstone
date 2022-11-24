@@ -92,10 +92,10 @@ workflows:
     jobs:
       - test
       - build
-      #- create-cluster
-      #- create-deploy:
-      #    requires: [create-cluster]
-      - create-service
+      - create-cluster
+      - create-service:
+          requires:
+            - create-cluster
       - create-deploy:
           requires:
             - create-service
