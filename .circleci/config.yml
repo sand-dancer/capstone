@@ -44,6 +44,21 @@ jobs:
           ssh-access: false
           ssh-public-key: ''
 
+  create-service:
+    executor: aws-eks/python3
+    parameters:
+      cluster-name: rosscapstonecluster
+        description:  my cluster
+        type: string
+    steps:
+      - checkout
+      - aws-eks/update-kubeconfig-with-authenticator:
+          cluster-name: rosscapstonecluster
+          install-kubectl: true
+      - kubernetes/create-or-update-resource:
+          resource-file-path: lb_service.json
+          resource-name: service/javalb
+
   create-deploy:
     #docker:
     # - image: amazon/aws-cli
@@ -83,13 +98,16 @@ workflows:
       #- create-cluster
       #- create-deploy:
       #    requires: [create-cluster]
-      - create-deploy
+      - create-service
+      - create-deploy:
+          requires:
+            - create-service
       #- update-image
       - aws-eks/update-container-image:
           cluster-name: rosscapstonecluster
           container-image-updates: 'rolling1=jarmanr/capstone:latest'
-          #requires:
-          #  - create-deployment
+          requires:
+            - create-deploy
           resource-name: deployment/rolling1
 
 

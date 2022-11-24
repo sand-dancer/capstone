@@ -1,0 +1,22 @@
+{
+   "kind":"Service",
+   "apiVersion":"v1",
+   "metadata":{
+      "name":"javalb",
+      "labels":{
+         "app":"javalb"
+      }
+   },
+   "spec":{
+      "ports": [
+         {
+           "port":8080,
+           "targetPort":8080
+         }
+      ],
+      "selector":{
+         "app":"rolling1"
+      },
+      "type": "LoadBalancer"
+   }
+}
