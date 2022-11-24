@@ -47,8 +47,6 @@ jobs:
   create-service:
     docker:
       - image: 'cimg/python:3.10'
-    parameters:
-      cluster-name: rosscapstonecluster
     steps:
       - checkout
       - aws-eks/update-kubeconfig-with-authenticator:
