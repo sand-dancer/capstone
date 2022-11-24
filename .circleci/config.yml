@@ -88,8 +88,8 @@ workflows:
       - aws-eks/update-container-image:
           cluster-name: rosscapstonecluster
           container-image-updates: 'rolling1=jarmanr/capstone:latest'
-          requires:
-            - create-deployment
+          #requires:
+          #  - create-deployment
           resource-name: deployment/rolling1
 
 
