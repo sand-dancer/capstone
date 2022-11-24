@@ -44,7 +44,7 @@ jobs:
           ssh-access: false
           ssh-public-key: ''
 
-  deploy-to-cluster:
+  create-deploy:
     #docker:
     # - image: amazon/aws-cli
     #executor: aws-eks/python3
@@ -60,6 +60,18 @@ jobs:
           resource-file-path: kubernetes_deployment.json
           resource-name: deployment/rolling1
 
+  update-image:
+    docker:
+      - image: 'cimg/python:3.10'
+    steps:
+      - checkout
+      - aws-eks/update-container-image:
+          cluster-name: rosscapstonecluster
+          container-image-updates: 'blue=jarmanr/capstone:latest'
+          record: true
+          requires:
+            - create-deployment
+          resource-name: deployment/rolling1
 
 workflows:
   default:
@@ -67,6 +79,7 @@ workflows:
       - test
       - build
       #- create-cluster
-      #- deploy-to-cluster:
+      #- create-deploy:
       #    requires: [create-cluster]
-      - deploy-to-cluster
+      - create-deploy
+      - update-image
