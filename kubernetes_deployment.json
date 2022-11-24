@@ -17,7 +17,7 @@
       "template":{
          "metadata":{
             "labels":{
-               "app":"javaapp"
+               "app":"rolling1"
             }
          },
          "spec":{
