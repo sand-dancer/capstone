@@ -69,4 +69,4 @@ workflows:
       #- create-cluster
       #- deploy-to-cluster:
       #    requires: [create-cluster]
-      deploy-to-cluster
+      - deploy-to-cluster
