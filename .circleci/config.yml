@@ -103,6 +103,7 @@ workflows:
       - aws-eks/update-container-image:
           cluster-name: rosscapstonecluster
           container-image-updates: 'rolling1=jarmanr/capstone:latest'
+          show-kubectl-command: true
           requires:
             - create-deploy
           resource-name: deployment/rolling1
