@@ -69,7 +69,7 @@ jobs:
           release-tag: ''
       - aws-eks/update-container-image:
           cluster-name: rosscapstonecluster
-          container-image-updates: 'blue=jarmanr/capstone:latest'
+          container-image-updates: 'rolling1=jarmanr/capstone:latest'
           record: true
           requires:
             - create-deployment
