@@ -58,7 +58,7 @@ jobs:
       - kubernetes/create-or-update-resource:
           get-rollout-status: true
           resource-file-path: kubernetes_deployment.json
-          resource-name: rolling-deployment
+          resource-name: rolling1
 
 
 workflows:
