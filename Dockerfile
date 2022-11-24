@@ -6,4 +6,4 @@ WORKDIR /java
 
 RUN javac BusinessProcess.java
 
-CMD ["java", "BusinessProcess"]
+CMD java BusinessProcess $buildNum

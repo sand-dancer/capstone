@@ -24,7 +24,13 @@
             "containers":[
                {
                   "name":"rolling1",
-                  "image":"jarmanr/capstone:latest"
+                  "image":"jarmanr/capstone:latest",
+                  "ports":[
+                     {
+                        "name":"java-server",
+                        "containerPort":8080
+                     }
+                  ]
                }
             ]
          }
