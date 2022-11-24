@@ -26,7 +26,7 @@ test:
 
 build-image:
 	docker login -u $DOCKER_USERNAME -p $DOCKER_ACCSS_CODE
-	docker build --tag=jarmanr/capstone --build-arg ONE .
+	docker build --tag=jarmanr/capstone --build-arg buildNum=ONE .
 	docker image ls
 	docker push jarmanr/capstone
 
