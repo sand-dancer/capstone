@@ -65,6 +65,8 @@ jobs:
       - image: 'cimg/python:3.10'
     steps:
       - checkout
+      - aws-eks/install-aws-iam-authenticator:
+          release-tag: ''
       - aws-eks/update-container-image:
           cluster-name: rosscapstonecluster
           container-image-updates: 'blue=jarmanr/capstone:latest'
@@ -83,3 +85,4 @@ workflows:
       #    requires: [create-cluster]
       - create-deploy
       - update-image
+
