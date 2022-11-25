@@ -4,7 +4,7 @@ COPY . /java
 
 WORKDIR /java
 
-EXPOSE 8080
+EXPOSE 80
 
 ARG SOMEVAR 
 RUN javac ${SOMEVAR}/BusinessProcess.java && cp ${SOMEVAR}/BusinessProcess.class /java
