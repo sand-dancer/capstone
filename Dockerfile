@@ -1,4 +1,3 @@
-dfgdg$%$&$%
 FROM amazoncorretto:8
 
 COPY . /java
