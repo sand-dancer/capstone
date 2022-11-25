@@ -28,6 +28,20 @@ jobs:
             docker image ls
             docker push jarmanr/capstone
 
+  build-green:
+    docker:
+      - image: docker:latest
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build and push the dockerfile
+          command: | #make build-image
+            docker login -u $DOCKER_USERNAME -p $DOCKER_ACCESS_CODE
+            docker build --tag=jarmanr/capstone --build-arg SOMEVAR=green .
+            docker image ls
+            docker push jarmanr/capstone
+
   create-cluster:
     docker:
       - image: 'cimg/python:3.10'
@@ -91,22 +105,39 @@ workflows:
   default:
     jobs:
       - test
-      - build
-      - create-cluster
-      - create-service:
-          requires:
-            - create-cluster
-      - create-deploy:
-          requires:
-            - create-service
+      - build:
+           requires:
+             - test
+      #- create-cluster:
+      #    requires:
+      #      - build
+      #- create-service:
+      #    requires:
+      #      - create-cluster
+      #- create-deploy:
+      #    requires:
+      #      - create-service
       #- update-image
+      #- aws-eks/update-container-image:
+      #    cluster-name: rosscapstonecluster
+      #    container-image-updates: 'rolling1=jarmanr/capstone:latest'
+      #    get-rollout-status: true
+      #    show-kubectl-command: true
+      #    requires:
+      #      #- create-deploy
+      #      - build
+      #    resource-name: deployment/rolling1
+      - build-green:
+          requires:
+            - test
       - aws-eks/update-container-image:
           cluster-name: rosscapstonecluster
           container-image-updates: 'rolling1=jarmanr/capstone:latest'
           get-rollout-status: true
           show-kubectl-command: true
           requires:
-            - create-deploy
+            #- create-deploy
+            - build
           resource-name: deployment/rolling1
 
 

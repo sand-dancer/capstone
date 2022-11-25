@@ -2,6 +2,8 @@ FROM amazoncorretto:8
 
 COPY . /java
 
+somebug
+
 WORKDIR /java
 
 EXPOSE 80
