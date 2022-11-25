@@ -129,6 +129,7 @@ workflows:
       - build-green:
           requires:
             - test
+            - build
       - aws-eks/update-container-image:
           cluster-name: rosscapstonecluster
           container-image-updates: 'rolling1=jarmanr/capstone:latest'
