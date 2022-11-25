@@ -1,3 +1,4 @@
+3454356&%*&%*$%*^$&*$%%%%*GFJ
 FROM amazoncorretto:8
 
 COPY . /java
