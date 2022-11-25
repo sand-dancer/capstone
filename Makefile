@@ -12,12 +12,12 @@ setup:
 
 install:
 	# This should be run from inside a virtualenv
-	#pip3 install --upgrade pip &&\
-	#	pip3 install -r requirements.txt
+	pip3 install --upgrade pip &&\
+		pip3 install -r requirements.txt
 	#ARCHFLAGS="-arch x86_64" pip3 install --upgrade --no-binary pip3 setuptools wheel --use-pep517 &&\
 	#	ARCHFLAGS="-arch x86_64" pip3 install -r requirements.txt
-	wget -O ./hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Darwin-x86_64
-	chmod +x ./hadolint
+	#wget -O ./hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Darwin-x86_64
+	#chmod +x ./hadolint
 
 test:
 	# Additional, optional, tests could go here
