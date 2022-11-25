@@ -136,7 +136,7 @@ workflows:
           show-kubectl-command: true
           requires:
             #- create-deploy
-            - build
+            - build-green
           resource-name: deployment/rolling1
 
 
